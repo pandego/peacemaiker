@@ -1,0 +1,75 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-toml
+      - id: debug-statements
+
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        language_version: python3.11
+        types: [python]
+        files: ^src/|^tests/
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ["--profile", "black"]
+        types: [python]
+        files: ^src/|^tests/
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        types: [python]
+        files: ^src/|^tests/
+        additional_dependencies:
+          - flake8-docstrings
+          - flake8-quotes
+          - flake8-comprehensions
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        types: [python]
+        files: ^src/|^tests/
+        additional_dependencies:
+          - pydantic
+          - types-setuptools
+          - types-requests
+
+  - repo: https://github.com/PyCQA/pylint
+    rev: v3.0.3
+    hooks:
+      - id: pylint
+        types: [python]
+        files: ^src/|^tests/
+        args:
+          - --rcfile=.pylintrc
+        additional_dependencies:
+          - pylint-pydantic
+          - streamlit
+          - python-dotenv
+
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: pytest-check
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+        args: [
+          "--cov=src",
+          "--cov-report=term-missing",
+          "tests/"
+        ]

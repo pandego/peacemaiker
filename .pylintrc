@@ -1,0 +1,44 @@
+[MASTER]
+load-plugins=pylint_pydantic
+
+[MESSAGES CONTROL]
+disable=
+    C0111,  # missing-docstring
+    C0103,  # invalid-name
+    R0903,  # too-few-public-methods
+    W0621,  # redefined-outer-name (for pytest fixtures)
+    R0801,  # duplicate-code
+    W0511,  # fixme
+
+[FORMAT]
+max-line-length=88
+good-names=i,j,k,ex,Run,_,id,fp
+
+[DESIGN]
+max-args=10
+max-attributes=10
+max-bool-expr=5
+max-branches=12
+max-locals=15
+max-parents=7
+max-public-methods=20
+max-returns=6
+max-statements=50
+min-public-methods=1
+
+[SIMILARITIES]
+min-similarity-lines=4
+ignore-comments=yes
+ignore-docstrings=yes
+ignore-imports=yes
+
+[TYPECHECK]
+generated-members=REQUEST,acl_users,aq_parent,"[a-zA-Z]+_set{1,2}",save,delete
+ignored-classes=optparse.Values,thread._local,_thread._local
+ignored-modules=numpy,tensorflow,torch,cv2,sklearn,pandas
+
+[BASIC]
+good-names-rgxs=^[_a-z][_a-z0-9]?$
+
+[IMPORTS]
+known-third-party=enchant
