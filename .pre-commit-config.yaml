@@ -16,6 +16,7 @@ repos:
         language_version: python3.11
         types: [python]
         files: ^src/|^tests/
+        exclude: ^src/utils/example_answers\.py$
 
   - repo: https://github.com/pycqa/isort
     rev: 5.13.2
@@ -24,6 +25,7 @@ repos:
         args: ["--profile", "black"]
         types: [python]
         files: ^src/|^tests/
+        exclude: ^src/utils/example_answers\.py$
 
   - repo: https://github.com/pycqa/flake8
     rev: 6.1.0
@@ -31,6 +33,11 @@ repos:
       - id: flake8
         types: [python]
         files: ^src/|^tests/
+        exclude: ^src/utils/example_answers\.py$
+        args:
+          - --inline-quotes=double
+          - --multiline-quotes=double
+          - --docstring-quotes=double
         additional_dependencies:
           - flake8-docstrings
           - flake8-quotes
@@ -42,6 +49,7 @@ repos:
       - id: mypy
         types: [python]
         files: ^src/|^tests/
+        exclude: ^src/utils/example_answers\.py$
         additional_dependencies:
           - pydantic
           - types-setuptools
@@ -53,12 +61,19 @@ repos:
       - id: pylint
         types: [python]
         files: ^src/|^tests/
+        exclude: ^src/utils/example_answers\.py$
         args:
           - --rcfile=.pylintrc
         additional_dependencies:
           - pylint-pydantic
           - streamlit
           - python-dotenv
+          - pydantic-ai
+          - pydantic
+          - langchain
+          - langchain-community
+          - huggingface-hub
+          - watchdog
 
   - repo: local
     hooks:
