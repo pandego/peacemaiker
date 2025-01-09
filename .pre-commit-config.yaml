@@ -74,6 +74,9 @@ repos:
           - langchain-community
           - huggingface-hub
           - watchdog
+          - pytest
+          - pytest-asyncio
+          - pytest-cov
 
   - repo: local
     hooks:

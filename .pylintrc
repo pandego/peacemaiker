@@ -1,10 +1,14 @@
 [MASTER]
+init-hook='import sys; sys.path.append(".")'
 load-plugins=pylint_pydantic
 
 [MESSAGES CONTROL]
 disable=
     C0111,  # missing-docstring
     C0103,  # invalid-name
+    C0114,  # missing-module-docstring (covered by flake8-docstrings)
+    C0115,  # missing-class-docstring (covered by flake8-docstrings)
+    C0116,  # missing-function-docstring (covered by flake8-docstrings)
     R0903,  # too-few-public-methods
     W0621,  # redefined-outer-name (for pytest fixtures)
     R0801,  # duplicate-code
@@ -12,7 +16,7 @@ disable=
 
 [FORMAT]
 max-line-length=88
-good-names=i,j,k,ex,Run,_,id,fp
+good-names=i,j,k,ex,Run,_,id,f,T
 
 [DESIGN]
 max-args=10
@@ -35,7 +39,7 @@ ignore-imports=yes
 [TYPECHECK]
 generated-members=REQUEST,acl_users,aq_parent,"[a-zA-Z]+_set{1,2}",save,delete
 ignored-classes=optparse.Values,thread._local,_thread._local
-ignored-modules=numpy,tensorflow,torch,cv2,sklearn,pandas
+ignored-modules=numpy,tensorflow,torch,cv2,sklearn,pandas,pydantic_ai
 
 [BASIC]
 good-names-rgxs=^[_a-z][_a-z0-9]?$
